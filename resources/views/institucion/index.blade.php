@@ -5,12 +5,15 @@
 	<div class="clo-lg-8 col-md-8 col-sm-8 col-xs-12">
 		<h3>Listado de Instituciones<a href="institucion/create"><button class="btn btn-success">Nuevo</button></a></h3>
 		@include('institucion.search')
+
+
+
 	</div>
 </div>
 <div class="row">
 	<div class="clo-lg-8 col-md-8 col-sm-8 col-xs-12">
 		<div class="table-responsive">
-			<table class="table table-striped table-bordered table-condensed table-hover">
+			<table class="table table-striped table-bordered table-condensed table-hover" id="example">
 				<head>
 					<th>Nombre</th>
 					<th>Departamento</th>
@@ -42,4 +45,11 @@
 		{{$instituciones->render()}}
 	</div>
 </div>
+
+
+<script src="{{asset('js2/app.js')}}"></script>
+<script type="text/javascript">
+</script>
+
+
 @endsection

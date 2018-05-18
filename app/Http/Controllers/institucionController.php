@@ -22,13 +22,16 @@ class institucionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct(){
+    $this->middleware('auth');
+}
     public function index(Request $request)
     {
         //
         if($request){
 
             $query=trim($request->get('searchText'));
-
+             $Departamento = Departamento::all();
 
             $instituciones=DB::table('institucion as ins')
             ->join('distrito  as ds','ins.iddistrito','=','ds.distritoid')
@@ -41,9 +44,22 @@ class institucionController extends Controller
             ->orderBy('ins.institucionid','desc')
             ->paginate(7);
 
-                return view('institucion.index',["instituciones"=>$instituciones,'searchText'=>$query]);
+                return view('institucion.index',["instituciones"=>$instituciones,'searchText'=>$query,"Departamento"=>$Departamento]);
 
         }
+    }
+
+
+        public function buscar_institucion($Distrito,$dato="")
+    {
+
+        $institucion= Institucion::Busqueda($districts,$dato)->paginate(25);  
+        $Departamentos=Departamento::all();
+        $departementosel=$Departamentos->find($Departamento);
+        return view('institucion.index')
+        ->with("Departamentos", $Departamentos )
+        ->with("departementosel", $departementosel )
+        ->with("institucion", $institucion );       
     }
 
     /**
@@ -51,6 +67,8 @@ class institucionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
     public function create()
     {
         //

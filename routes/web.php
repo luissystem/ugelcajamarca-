@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('layouts/admin');
+    return view('Auth/login');
 });
 Route::resource('institucion','institucionController');
 Route::get('/institucion/create','institucionController@create');
@@ -32,3 +32,7 @@ Route::get('/json-lisprovincias','PlanillaController@lisprovincias');
 Route::get('/json-lisdistritos', 'PlanillaController@lisdistritos');
 Route::get('/json-lisInstitucion', 'PlanillaController@lisInstitucion');
 
+
+Auth::routes();
+
+Route::get('/planillas', 'planillaController@index')->name('planilla');

@@ -11,4 +11,8 @@ class Distrito extends Model
     protected $primaryKey ="distritoid";
     protected $fillable =['nombreDistrito','idprovincia'];
     protected $guarded =[];
+
+
+
 }
+
